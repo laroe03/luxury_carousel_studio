@@ -6,10 +6,16 @@ import { useStudio } from '@/context/StudioContext';
 import { Footer } from '@/components/layout/Footer';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
+import { SectionLabel } from '@/components/ui/SectionLabel';
+
+const PROVIDERS = [
+  { value: 'anthropic', label: 'Anthropic Claude', icon: '◆' },
+  { value: 'openai',    label: 'ChatGPT (GPT-4o)',  icon: '◇' },
+] as const;
 
 export default function StudioPage() {
   const router = useRouter();
-  const { dispatch } = useStudio();
+  const { state, dispatch } = useStudio();
 
   const startCreate = () => {
     dispatch({ type: 'SET_MODE', payload: 'create' });
@@ -47,10 +53,53 @@ export default function StudioPage() {
         <h1 style={{ textAlign: 'center', color: 'var(--color-text-on-light)', marginBottom: '16px', fontFamily: "'Sora', sans-serif" }}>
           What would you like to create?
         </h1>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '16px', color: 'var(--color-text-on-light)', opacity: 0.7, textAlign: 'center', maxWidth: '480px', marginBottom: '48px', lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '16px', color: 'var(--color-text-on-light)', opacity: 0.7, textAlign: 'center', maxWidth: '480px', marginBottom: '40px', lineHeight: 1.6 }}>
           AI-powered Instagram carousels built on psychological frameworks. Paste-ready for Canva.
         </p>
 
+        {/* Provider toggle */}
+        <div style={{ marginBottom: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+          <SectionLabel>AI MODEL</SectionLabel>
+          <div style={{
+            display: 'flex',
+            background: 'var(--color-card-dark)',
+            border: '1px solid var(--color-card-dark-border)',
+            borderRadius: '9999px',
+            padding: '4px',
+            gap: '4px',
+          }}>
+            {PROVIDERS.map(p => {
+              const active = state.provider === p.value;
+              return (
+                <button
+                  key={p.value}
+                  onClick={() => dispatch({ type: 'SET_PROVIDER', payload: p.value })}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '10px 20px',
+                    borderRadius: '9999px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: 600,
+                    fontSize: '14px',
+                    letterSpacing: '0.01em',
+                    transition: 'all 150ms ease',
+                    background: active ? 'var(--color-brand)' : 'transparent',
+                    color: active ? '#fff' : 'var(--color-text-muted)',
+                  }}
+                >
+                  <span style={{ fontSize: '12px' }}>{p.icon}</span>
+                  {p.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Mode cards */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',

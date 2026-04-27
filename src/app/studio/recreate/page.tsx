@@ -12,7 +12,7 @@ import { Toggle } from '@/components/ui/Toggle';
 import { RangeSlider } from '@/components/ui/RangeSlider';
 import { Button } from '@/components/ui/Button';
 import { LoadingOverlay } from '@/components/ui/LoadingOverlay';
-import { buildRecreatePrompt, generateCarousel } from '@/lib/claude';
+import { buildRecreatePrompt, generateCarousel } from '@/lib/ai';
 import { useToast } from '@/components/ui/Toast';
 
 const TONES = ['Bold', 'Mentor', 'Authority', 'Polarizing', 'Soft'];
@@ -44,7 +44,7 @@ export default function RecreatePage() {
     while (retries <= 2) {
       try {
         const prompt = buildRecreatePrompt(state);
-        const output = await generateCarousel(prompt, controller.signal);
+        const output = await generateCarousel(prompt, state.provider, controller.signal);
         dispatch({ type: 'SET_OUTPUT', payload: output });
         router.push('/studio/results');
         return;

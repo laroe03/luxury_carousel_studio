@@ -70,6 +70,7 @@ export interface DesignPreviewState {
 
 export interface StudioState {
   mode: 'create' | 'recreate' | null;
+  provider: 'anthropic' | 'openai';
   currentStep: 1 | 2 | 3 | 4;
   productInfo: ProductInfo;
   brandAudience: BrandAudience;
@@ -94,4 +95,5 @@ export type StudioAction =
   | { type: 'SET_OUTPUT'; payload: CarouselOutput }
   | { type: 'UPDATE_DESIGN_PREVIEW'; payload: Partial<DesignPreviewState> }
   | { type: 'SET_ERROR'; payload: string | null }
+  | { type: 'SET_PROVIDER'; payload: 'anthropic' | 'openai' }
   | { type: 'RESET' };

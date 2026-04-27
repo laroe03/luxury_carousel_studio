@@ -5,6 +5,7 @@ import { StudioState, StudioAction } from '@/types/studio';
 
 const initialState: StudioState = {
   mode: null,
+  provider: 'anthropic',
   currentStep: 1,
   productInfo: {
     productType: null,
@@ -76,6 +77,8 @@ function studioReducer(state: StudioState, action: StudioAction): StudioState {
       return { ...state, designPreview: { ...state.designPreview, ...action.payload } };
     case 'SET_ERROR':
       return { ...state, error: action.payload, isGenerating: false };
+    case 'SET_PROVIDER':
+      return { ...state, provider: action.payload };
     case 'RESET':
       return initialState;
     default:

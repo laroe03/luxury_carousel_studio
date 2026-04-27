@@ -10,7 +10,7 @@ import { Toggle } from '@/components/ui/Toggle';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { LoadingOverlay } from '@/components/ui/LoadingOverlay';
-import { buildCreatePrompt, generateCarousel } from '@/lib/claude';
+import { buildCreatePrompt, generateCarousel } from '@/lib/ai';
 import { useToast } from '@/components/ui/Toast';
 
 const TONES = [
@@ -78,7 +78,7 @@ export default function Step4Page() {
     while (retries <= maxRetries) {
       try {
         const prompt = buildCreatePrompt(state);
-        const output = await generateCarousel(prompt, controller.signal);
+        const output = await generateCarousel(prompt, state.provider, controller.signal);
         dispatch({ type: 'SET_OUTPUT', payload: output });
         router.push('/studio/results');
         return;
