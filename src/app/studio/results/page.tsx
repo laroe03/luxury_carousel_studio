@@ -122,8 +122,8 @@ export default function ResultsPage() {
                   Each slide includes copy and design notes. Use these in Canva exactly as written.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {output.slides.map(slide => (
-                    <SlideCard key={slide.slide_number} slide={slide} total={output.slides.length} />
+                  {output.slides.map((slide, i) => (
+                    <SlideCard key={slide.slide_number} slide={slide} index={i} total={output.slides.length} />
                   ))}
                 </div>
               </div>

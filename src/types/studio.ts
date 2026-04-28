@@ -93,6 +93,7 @@ export type StudioAction =
   | { type: 'UPDATE_VIRAL_RECREATE'; payload: Partial<ViralRecreate> }
   | { type: 'SET_GENERATING'; payload: boolean }
   | { type: 'SET_OUTPUT'; payload: CarouselOutput }
+  | { type: 'UPDATE_OUTPUT_SLIDE'; payload: { index: number; fields: Partial<CarouselSlide> } }
   | { type: 'UPDATE_DESIGN_PREVIEW'; payload: Partial<DesignPreviewState> }
   | { type: 'SET_ERROR'; payload: string | null }
   | { type: 'SET_PROVIDER'; payload: 'anthropic' | 'openai' }

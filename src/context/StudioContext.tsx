@@ -73,6 +73,13 @@ function studioReducer(state: StudioState, action: StudioAction): StudioState {
       return { ...state, isGenerating: action.payload };
     case 'SET_OUTPUT':
       return { ...state, output: action.payload, isGenerating: false, error: null };
+    case 'UPDATE_OUTPUT_SLIDE': {
+      if (!state.output) return state;
+      const slides = state.output.slides.map((s, i) =>
+        i === action.payload.index ? { ...s, ...action.payload.fields } : s
+      );
+      return { ...state, output: { ...state.output, slides } };
+    }
     case 'UPDATE_DESIGN_PREVIEW':
       return { ...state, designPreview: { ...state.designPreview, ...action.payload } };
     case 'SET_ERROR':
