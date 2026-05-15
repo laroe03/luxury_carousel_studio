@@ -112,7 +112,28 @@ export default function Step1Page() {
           {errors.priceTier && <p style={{ color: 'var(--color-error)', fontSize: '13px', marginTop: '8px' }}>{errors.priceTier}</p>}
         </div>
 
-        {/* Field 3: Desired CTA */}
+        {/* Field 3: Topic or Hook */}
+        <div style={{ marginBottom: '32px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+            <SectionLabel style={{ marginBottom: 0 }}>TOPIC OR HOOK</SectionLabel>
+            <Badge color="lavender">OPTIONAL</Badge>
+          </div>
+          <input
+            type="text"
+            value={productInfo.topicOrHook}
+            onChange={e => update({ topicOrHook: e.target.value })}
+            placeholder='e.g., "Why most people buy the wrong candle" or "3 signs you have expensive taste"'
+            style={{
+              ...inputStyle,
+              border: '1px solid var(--color-card-dark-border)',
+            }}
+          />
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'var(--color-text-muted)', marginTop: '6px' }}>
+            Give your carousel a specific angle or opening hook. Leave blank to let the framework decide.
+          </p>
+        </div>
+
+        {/* Field 5: Desired CTA */}
         <div style={{ marginBottom: '32px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
             <SectionLabel style={{ marginBottom: 0 }}>DESIRED CTA</SectionLabel>
@@ -133,7 +154,7 @@ export default function Step1Page() {
           </p>
         </div>
 
-        {/* Field 4: Slide Count */}
+        {/* Field 6: Slide Count */}
         <div style={{ marginBottom: '40px' }}>
           <SectionLabel>NUMBER OF SLIDES</SectionLabel>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'var(--color-text-muted)', marginBottom: '20px' }}>

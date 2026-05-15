@@ -11,6 +11,7 @@ const initialState: StudioState = {
     productType: null,
     productDescription: '',
     priceTier: null,
+    topicOrHook: '',
     desiredCTA: '',
     slideCount: 7,
   },

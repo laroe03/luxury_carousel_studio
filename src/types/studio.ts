@@ -2,6 +2,7 @@ export interface ProductInfo {
   productType: 'physical' | 'digital' | null;
   productDescription: string;
   priceTier: 'affordable' | 'contemporary' | 'heritage' | null;
+  topicOrHook: string;
   desiredCTA: string;
   slideCount: number;
 }
